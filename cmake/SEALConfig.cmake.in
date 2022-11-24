@@ -78,8 +78,8 @@ set(SEAL_DEFAULT_PRNG @SEAL_DEFAULT_PRNG@)
 set(SEAL_USE_MSGSL @SEAL_USE_MSGSL@)
 set(SEAL_USE_ZLIB @SEAL_USE_ZLIB@)
 set(SEAL_USE_ZSTD @SEAL_USE_ZSTD@)
-set(SEAL_USE_INTEL_HEXL @SEAL_USE_INTEL_HEXL@)
-set(SEAL_USE_INTEL_HEXL_FPGA @SEAL_USE_INTEL_HEXL_FPGA@)
+set(SEAL_USE_INTEL_HEXL ON)
+set(SEAL_USE_INTEL_HEXL_FPGA ON)
 set(SEAL_CARRY_DEPS @SEAL_BUILD_DEPS@)
 
 # If SEAL does not carry dependencies, we must look for them
@@ -106,9 +106,9 @@ if(NOT SEAL_CARRY_DEPS)
     if(SEAL_USE_INTEL_HEXL)
         seal_find_dependency(HEXL)
     endif()
-    if(SEAL_USE_INTEL_HEXL_FPGA)
-        seal_find_dependency(hexl-fpga)
-    endif()
+
+    seal_find_dependency(hexl-fpga)
+
 endif()
 
 # Add the current directory to the module search path
