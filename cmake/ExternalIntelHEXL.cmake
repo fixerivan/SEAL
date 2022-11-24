@@ -9,7 +9,7 @@ FetchContent_Declare(
 )
 FetchContent_GetProperties(hexl)
 
-set(INTEL_HEXL_HINT_DIR ~/hexl-fpga-install/lib/cmake)
+set(INTEL_HEXL_HINT_DIR /home/u177856/hexl-fpga-install/lib/cmake)
 
 if(NOT hexl_POPULATED)
     FetchContent_Populate(hexl)
