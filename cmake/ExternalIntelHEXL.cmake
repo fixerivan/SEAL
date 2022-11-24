@@ -4,7 +4,7 @@
 FetchContent_Declare(
     hexl
     PREFIX hexl
-    GIT_REPOSITORY https://github.com/intel/hexl
+    GIT_REPOSITORY https://github.com/intel/hexl.git
     GIT_TAG v1.2.4
 )
 FetchContent_GetProperties(hexl)
@@ -18,8 +18,10 @@ if(NOT hexl_POPULATED)
     set(HEXL_COVERAGE OFF CACHE BOOL "" FORCE)
     set(HEXL_TESTING OFF CACHE BOOL "" FORCE)
     set(HEXL_SHARED_LIB ${BUILD_SHARED_LIBS} CACHE BOOL "" FORCE)
-    set(HEXL_EXPERIMENTAL ON CACHE BOOL "" FORCE)
-    set(HEXL_FPGA_COMPATIBILITY 2 CACHE STRING "" FORCE)
+    set(HEXL_EXPERIMENTAL ${HEXL_EXPERIMENTAL} CACHE BOOL "" FORCE)
+    if(SEAL_USE_INTEL_HEXL_FPGA)
+        set(HEXL_FPGA_COMPATIBILITY "2" CACHE SRING "Keyswitch on FPGA" FORCE)
+    endif()
     set(EXCLUDE_FROM_ALL TRUE)
 
     mark_as_advanced(BUILD_HEXL)
