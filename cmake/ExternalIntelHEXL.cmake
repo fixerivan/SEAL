@@ -9,6 +9,8 @@ FetchContent_Declare(
 )
 FetchContent_GetProperties(hexl)
 
+set(INTEL_HEXL_HINT_DIR ${CMAKE_INSTALL_PREFIX}/lib/cmake)
+
 if(NOT hexl_POPULATED)
     FetchContent_Populate(hexl)
     set(CMAKE_C_COMPILER ${CMAKE_C_COMPILER} CACHE STRING "" FORCE)
