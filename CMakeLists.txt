@@ -48,6 +48,9 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Make the install target depend on the all target (required by vcpkg)
 set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY OFF)
 
+set(SEAL_USE_INTEL_HEXL ON)
+set(SEAL_USE_INTEL_HEXL_FPGA ON)
+
 # In Debug mode, define SEAL_DEBUG
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(SEAL_DEBUG ON)
