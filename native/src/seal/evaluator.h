@@ -1266,5 +1266,7 @@ namespace seal
         void multiply_plain_ntt(Ciphertext &encrypted_ntt, const Plaintext &plain_ntt) const;
 
         SEALContext context_;
+
+        std::unordered_map<const PublicKey *, std::vector<const uint64_t *>> key_vector_cache;
     };
 } // namespace seal
