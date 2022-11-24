@@ -34,6 +34,7 @@
 #   SEAL_USE_ZLIB : Set to non-zero value if library is compiled with ZLIB support
 #   SEAL_USE_ZSTD : Set to non-zero value if library is compiled with Zstandard support
 #   SEAL_USE_INTEL_HEXL: Set to non-zero value if library is compiled with Intel HEXL support
+#   SEAL_USE_INTEL_HEXL_FPGA: Set to non-zero value if library is compiled with Intel HEXL-FPGA support
 #   SEAL_CARRY_DEPS : Set to non-zero value if library is configured with SEAL_BUILD_DEPS=ON and carries dependencies
 
 @PACKAGE_INIT@
@@ -78,6 +79,7 @@ set(SEAL_USE_MSGSL @SEAL_USE_MSGSL@)
 set(SEAL_USE_ZLIB @SEAL_USE_ZLIB@)
 set(SEAL_USE_ZSTD @SEAL_USE_ZSTD@)
 set(SEAL_USE_INTEL_HEXL @SEAL_USE_INTEL_HEXL@)
+set(SEAL_USE_INTEL_HEXL_FPGA @SEAL_USE_INTEL_HEXL_FPGA@)
 set(SEAL_CARRY_DEPS @SEAL_BUILD_DEPS@)
 
 # If SEAL does not carry dependencies, we must look for them
@@ -103,6 +105,9 @@ if(NOT SEAL_CARRY_DEPS)
     endif()
     if(SEAL_USE_INTEL_HEXL)
         seal_find_dependency(HEXL)
+    endif()
+    if(SEAL_USE_INTEL_HEXL_FPGA)
+        seal_find_dependency(hexl-fpga)
     endif()
 endif()
 
