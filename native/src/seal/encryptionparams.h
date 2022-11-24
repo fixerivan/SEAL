@@ -202,6 +202,12 @@ namespace seal
 
             coeff_modulus_ = coeff_modulus;
 
+            coeff_modulus_values_.clear();
+            for (const auto &modulus : coeff_modulus)
+            {
+                coeff_modulus_values_.push_back(modulus.value());
+            }
+
             // Re-compute the parms_id
             compute_parms_id();
         }
@@ -288,6 +294,14 @@ namespace seal
         SEAL_NODISCARD inline const std::vector<Modulus> &coeff_modulus() const noexcept
         {
             return coeff_modulus_;
+        }
+
+        /**
+        Returns a const reference to the currently set coefficient modulus parameter values.
+        */
+        SEAL_NODISCARD inline auto coeff_modulus_values() const noexcept -> const std::vector<uint64_t> &
+        {
+            return coeff_modulus_values_;
         }
 
         /**
@@ -496,6 +510,8 @@ namespace seal
         std::size_t poly_modulus_degree_ = 0;
 
         std::vector<Modulus> coeff_modulus_{};
+
+        std::vector<uint64_t> coeff_modulus_values_{};
 
         std::shared_ptr<UniformRandomGeneratorFactory> random_generator_{ nullptr };
 
