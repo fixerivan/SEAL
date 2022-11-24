@@ -236,6 +236,7 @@ if(SEAL_USE_INTEL_HEXL)
         find_package(hexl-fpga 2.0
         HINTS /home/u177856/hexl-fpga-install/lib/cmake
         REQUIRED)
+        add_library(hexl-fpga ALIAS hexl-fpga::hexl-fpga)
         message(STATUS "Intel HEXL-FPGA: USING PREBUILD SEAMS OK")
 
         #if(SEAL_USE_INTEL_HEXL_FPGA)
