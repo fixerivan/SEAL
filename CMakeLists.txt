@@ -48,9 +48,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Make the install target depend on the all target (required by vcpkg)
 set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY OFF)
 
-set(SEAL_USE_INTEL_HEXL ON)
-set(SEAL_USE_INTEL_HEXL_FPGA ON)
-
 # In Debug mode, define SEAL_DEBUG
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(SEAL_DEBUG ON)
@@ -235,24 +232,36 @@ if(SEAL_USE_INTEL_HEXL)
         message(STATUS "Intel HEXL: download ...")
         seal_fetch_thirdparty_content(ExternalIntelHEXL)
 
-        if(SEAL_USE_INTEL_HEXL_FPGA)
-            message(STATUS "Intel HEXL-FPGA: download ...")
-            seal_fetch_thirdparty_content(ExternalIntelHEXLFPGA)
-        endif()
+        message(STATUS "Intel HEXL-FPGA: TRYING TO USE PREBUILD ...")
+        find_package(hexl-fpga 2.0
+        HINTS ${HEXL_FPGA_HINT_DIR}
+        REQUIRED)
+        message(STATUS "Intel HEXL-FPGA: USING PREBUILD SEAMS OK")
+
+        #if(SEAL_USE_INTEL_HEXL_FPGA)
+        #    message(STATUS "Intel HEXL-FPGA: download ...")
+        #    seal_fetch_thirdparty_content(ExternalIntelHEXLFPGA)
+        #endif()
+
     else()
         find_package(HEXL 1.2.4)
         if (NOT TARGET HEXL::hexl)
             message(FATAL_ERROR "Intel HEXL: not found")
         endif()
 
-        if(SEAL_USE_INTEL_HEXL_FPGA)
-            find_package(hexl-fpga 2.0)
-            if (NOT TARGET hexl-fpga::hexl-fpga)
-                message(FATAL_ERROR "Intel HEXL-FPGA: not found")
-            else()
-                add_library(hexl-fpga ALIAS hexl-fpga::hexl-fpga)
-            endif()
-        endif()
+        #if(SEAL_USE_INTEL_HEXL_FPGA)
+        #    find_package(hexl-fpga 2.0)
+        #    if (NOT TARGET hexl-fpga::hexl-fpga)
+        #        message(FATAL_ERROR "Intel HEXL-FPGA: not found")
+        #    else()
+        #        add_library(hexl-fpga ALIAS hexl-fpga::hexl-fpga)
+        #    endif()
+        #endif()
+
+
+
+
+
     endif()
 endif()
 
