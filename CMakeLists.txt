@@ -234,7 +234,7 @@ if(SEAL_USE_INTEL_HEXL)
 
         message(STATUS "Intel HEXL-FPGA: TRYING TO USE PREBUILD ...")
         find_package(hexl-fpga 2.0
-        HINTS ${HEXL_FPGA_HINT_DIR}
+        HINTS /home/u177856/hexl-fpga-install/lib/cmake
         REQUIRED)
         message(STATUS "Intel HEXL-FPGA: USING PREBUILD SEAMS OK")
 
