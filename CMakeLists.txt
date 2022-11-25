@@ -228,9 +228,9 @@ if(SEAL_USE_INTEL_HEXL_FPGA)
 endif()
 
 if(SEAL_USE_INTEL_HEXL)
-    if(SEAL_BUILD_DEPS)
-        message(STATUS "Intel HEXL: download ...")
-        seal_fetch_thirdparty_content(ExternalIntelHEXL)
+    #if(SEAL_BUILD_DEPS)
+   #     message(STATUS "Intel HEXL: download ...")
+   #     seal_fetch_thirdparty_content(ExternalIntelHEXL)
 
         message(STATUS "Intel HEXL-FPGA: TRYING TO USE PREBUILD ...")
         find_package(hexl-fpga 2.0
@@ -244,7 +244,7 @@ if(SEAL_USE_INTEL_HEXL)
         #    seal_fetch_thirdparty_content(ExternalIntelHEXLFPGA)
         #endif()
 
-    else()
+    #else()
         find_package(HEXL 1.2.4)
         if (NOT TARGET HEXL::hexl)
             message(FATAL_ERROR "Intel HEXL: not found")
@@ -263,7 +263,7 @@ if(SEAL_USE_INTEL_HEXL)
 
 
 
-    endif()
+    #endif()
 endif()
 
 ####################
